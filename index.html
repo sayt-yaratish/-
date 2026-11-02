@@ -2,6 +2,7 @@
 <html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f1226"><title>Мой день</title>
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
 <style>
 :root{--bg:#0f1226;--card:#1a1e3a;--tx:#f2f4ff;--mu:#8e94c0;--ok:#34d399;--no:#fb7185;--ac:#8b7cff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:light){:root:not([data-x]){--bg:#f1f2fb;--card:#fff;--tx:#1b1e3b;--mu:#6c71a0;color-scheme:light}}
@@ -69,5 +70,6 @@ $("bs").onclick=()=>{S.snd=!S.snd;sv();$("bs").textContent="🔊 Звук: "+(S.
 $("bt").onclick=()=>{beep();toast("Так звучит напоминание 🔔")};
 $("ex").onclick=()=>{const a=document.createElement("a");a.href="data:application/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(S));a.download="grafik-kopiya.json";a.click()};
 $("im").onclick=()=>$("fi").click();$("fi").onchange=e=>{const r=new FileReader();r.onload=()=>{try{S=Object.assign(S,JSON.parse(r.result));sv();draw();toast("Копия загружена ✅")}catch(x){toast("Файл не подходит")}};r.readAsText(e.target.files[0])};
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 draw();setInterval(tick,15000);document.addEventListener("visibilitychange",tick);
 </script></body></html>
